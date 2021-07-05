@@ -1,16 +1,14 @@
+using Holidays.Api.Interfaces.Repositories;
+using Holidays.Api.Interfaces.Services;
+using Holidays.Api.Repositories;
+using Holidays.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Holidays.Api
 {
@@ -26,6 +24,9 @@ namespace Holidays.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient<IHolidayRepository, HolidayRepository>(c => c.BaseAddress = new Uri("https://kayaposoft.com/enrico/json/v2.0"));
+
+            services.AddScoped<IHolidayService, HolidayService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
