@@ -1,6 +1,6 @@
 ﻿namespace Holidays.Api.Models
 {
-    public class HolidayDate
+    public class HolidayDateModel
     {
         public int Day { get; set; }
         public int Month { get; set; }

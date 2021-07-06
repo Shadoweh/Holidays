@@ -9,7 +9,7 @@ namespace Holidays.Api.Models
         public IEnumerable<string> Regions { get; set; }
         public IEnumerable<string> HolidayTypes { get; set; }
         public string FullName { get; set; }
-        public HolidayDate FromDate { get; set; }
-        public HolidayDate ToDate { get; set; }
+        public HolidayDateModel FromDate { get; set; }
+        public HolidayDateModel ToDate { get; set; }
     }
 }

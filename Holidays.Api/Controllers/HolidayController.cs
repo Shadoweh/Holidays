@@ -16,11 +16,24 @@ namespace Holidays.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetCountries()
         {
             var countries = await _holidayService.GetCountries();
 
             return Ok(countries);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetHolidaysGrouppedByMonth(string country, int year, string region = null)
+        {
+            if (string.IsNullOrEmpty(country) || year == 0)
+            {
+                return BadRequest("Empty country or year");
+            }
+
+            var holidaysByMonth = await _holidayService.GetHolidaysGrouppedByMonth(country, region, year);
+
+            return Ok(holidaysByMonth);
         }
     }
 }
